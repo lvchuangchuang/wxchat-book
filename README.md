@@ -35,16 +35,16 @@
 
 ### 部门
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-dept.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-dept.png"/>
 
 ### 联系人列表
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-card.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-card.png"/>
 
 ### 学科
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-subject.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-subject.png"/>
 
 ## 我
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-user.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-user.png"/>
