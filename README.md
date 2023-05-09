@@ -37,6 +37,10 @@
 
 <img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-dept.png"/>
 
+### 添加
+
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-add.png"/>
+
 ### 联系人列表
 
 <img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-card.png"/>
