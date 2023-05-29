@@ -99,7 +99,7 @@ exports.getContactsByDeptID = async (ctx) => {
         pageNum = ctx.request.query.pageNum || 20,
         pageIndex = (page - 1) * pageNum;
 
-    let sql = ` select a.id, a.name, a.gender, a.phone, b.name as deptName, b.tel as deptTel
+    let sql = ` select a.id, a.name, a.gender, a.phone,a.avatar, b.name as deptName, b.tel as deptTel
                 from contact_user a
                          left join contact_dept b on a.deptId = b.id
                 where a.deptId = ? limit ?, ?`;
@@ -129,7 +129,7 @@ exports.getContactsBySubjectID = async (ctx) => {
         pageNum = ctx.request.query.pageNum || 20,
         pageIndex = (page - 1) * pageNum;
 
-    let sql = ` select a.id, a.name, a.gender, a.phone, b.name as subject
+    let sql = ` select a.id, a.name, a.gender, a.phone,a.avatar, b.name as subject
                 from contact_user a
                          left join contact_subject b on a.subjectId = b.id
                 where a.subjectId = ? limit ?, ?`;
@@ -157,7 +157,7 @@ exports.searchByKeyword = async (ctx) => {
         page = ctx.request.query.page ? parseInt(ctx.request.query.page) : 1,
         pageNum = ctx.request.query.pageNum || 20,
         pageIndex = (page - 1) * pageNum,
-        sql = ` select a.name, a.gender, a.phone, b.name as deptName, b.tel as deptTel, c.name as subject
+        sql = ` select a.name, a.gender, a.phone,a.avatar, b.name as deptName, b.tel as deptTel, c.name as subject
                 from contact_user a
                          left join contact_dept b on a.deptId = b.id
                          left join contact_subject c
@@ -189,7 +189,7 @@ exports.searchByKeyword = async (ctx) => {
  */
 exports.getContactByID = async (ctx) => {
     let userID = ctx.params.userID || 0;
-    let sql = ` select a.name, a.gender, a.phone, b.name as deptName, b.tel as deptTel, c.name as subject
+    let sql = ` select a.name, a.gender, a.phone, a.avatar, b.name as deptName, b.tel as deptTel, c.name as subject
                 from contact_user a
                          left join contact_dept b on a.deptId = b.id
                          left join contact_subject c on a.subjectId = c.id
@@ -277,6 +277,7 @@ exports.getContactWhenUpdate = async (ctx) => {
     let sql = ` select a.name,
                        a.gender,
                        a.phone,
+                       a.avatar,
                        b.id   as deptId,
                        b.name as deptName,
                        b.tel  as deptTel,
@@ -323,17 +324,13 @@ exports.getContactWhenUpdate = async (ctx) => {
  * 删除我的信息
  */
 exports.delete = async (ctx) => {
-    let userID = ctx.params.userID || 0;
+    let userID = ctx.params.userID || 0,
+        data = {
+            userID: ctx.request.body.userID
+        };
     try {
-        // let id = getRandomNum(10000, 5000000, 1);
-        // console.log("id" + id)
-        //
-        // // await ctx.execSql("insert into contact_user (id) values (?)", id)
-        // await ctx.execSql("insert into contact_user (id) values (?)", id)
-        // await ctx.execSql('update contact_user set ? where id = ?', [data, id])
-        //
-        // // let result = await ctx.execSql('update contact_user set ? where id = ?', [data, userID]);  // 执行一下sql
-        console.log("删除")
+        await ctx.execSql('DELETE FROM contact_user WHERE id = ?',data.userID)
+        console.log("删除成功")
         ctx.body = {
             success: true,
             message: ''
@@ -353,6 +350,7 @@ exports.delete = async (ctx) => {
 exports.updateContact = async (ctx) => {
     let userID = ctx.params.userID || 0,
         data = {
+            avatar: ctx.request.body.avatar,
             name: ctx.request.body.name,
             gender: ctx.request.body.gender || 1,
             phone: ctx.request.body.phone,
@@ -380,6 +378,7 @@ exports.updateContact = async (ctx) => {
 exports.add = async (ctx) => {
     let userID = ctx.params.userID || 0, // 这个为空
         data = {
+            avatar: ctx.request.body.avatar,
             name: ctx.request.body.name,
             gender: ctx.request.body.gender || 1,
             phone: ctx.request.body.phone,
@@ -389,6 +388,7 @@ exports.add = async (ctx) => {
     try {
         let id = getRandomNum(10000, 5000000, 1);
         console.log("id" + id)
+
 
         // await ctx.execSql("insert into contact_user (id) values (?)", id)
         await ctx.execSql("insert into contact_user (id) values (?)", id)

@@ -30,6 +30,7 @@ Page(filter.loginCheck({
 			success: function (res) {
 				// success
 				if (res.data.success) {
+          // console.log(res.data.data)
 					that.setData({
 						update: res.data.data,
 						deptArray: res.data.depts,
@@ -46,14 +47,44 @@ Page(filter.loginCheck({
 				// complete
 			}
 		})
+  },
 
-	},
+  uploadImage: function () {
+    var that = this;
+    wx.chooseImage({
+      count: 1,  //最多可以选择的图片总数
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: (res) => {
+        // console.log(res.tempFiles[0].path)
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFiles[0].path;
+        console.log(tempFilePaths)
+        //启动上传等待中...
+        wx.showToast({
+          title: '正在上传...',
+          icon: 'loading',
+          mask: true,
+          duration: 2000
+        })
+        console.log(this.data.update)
+        let oldData = this.data.update;
+        oldData.avatar = tempFilePaths;
+        this.setData({
+          update: oldData
+        });
+        console.log(oldData)
+        console.log(this.data.update)
+      }
+    });
+  },
 	bindNameInput: function (e) {
 		let oldData = this.data.update;
 		oldData.name = e.detail.value;
 		this.setData({
 			update: oldData
-		});
+    });
+    console.log(this.data.update)
 	},
 	bindPhoneInput: function (e) {
 		let oldData = this.data.update;
@@ -94,6 +125,7 @@ Page(filter.loginCheck({
 		wx.request({
 			url: `${app.globalData.apiUrl}/updateContact/${this.data.userID}`,
 			data: {
+        avatar: this.data.update.avatar,
 				name: this.data.update.name,
 				gender: this.data.update.gender,
 				phone: this.data.update.phone,

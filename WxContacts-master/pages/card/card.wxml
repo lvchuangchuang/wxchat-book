@@ -10,7 +10,7 @@
     </view>
     <scroll-view scroll-y="true" bindscrolltolower="loadMore" bindscrolltoupper="loadMore">
         <view class="scroll-view-item" wx:key="index" wx:for="{{cardsData}}" wx:for-item="card" wx:if="{{ dataType === 1 || dataType === 3}}">
-            <image class="card-logo" mode="aspectFit" src="{{card.logo ? card.logo : '/image/user.png'}}"></image>
+            <image class="card-logo" mode="aspectFit" src="{{card.avatar}}"></image>
             <view class="card-section">
                 <text class="card-name">{{card.name}}</text>
                 <image class="img-gender" mode="aspectFit" src="/image/male.png" wx:if="{{card.gender == 1}}"></image>
@@ -18,7 +18,7 @@
             </view>
             <view class="card-section">
                 <text class="card-phone" data-phone="{{card.phone}}" bindtap="callPhone">{{card.phone}}</text>
-                <image class="img-delete" mode="aspectFit"  bindtap="deleteUser" src="/image/delete.png"></image>
+                <image class="img-delete" data-id="{{card.id}}" mode="aspectFit"  bindtap="deleteUser" src="/image/delete.png"></image>
             </view>
         </view>
         
@@ -35,7 +35,7 @@
                 <!-- <text class="card-depttel">{{card.subject}}</text> -->
             </view>
         </view>
-        <button>添加新联系人</button>
+        <button bindtap="addUser">添加新联系人</button>
         <view class="loading" hidden="{{!isLoading}}">努力加载中...</view>
         <view class="loading no-more" hidden="{{!isNoMore}}">没有更多了</view>
     </scroll-view>

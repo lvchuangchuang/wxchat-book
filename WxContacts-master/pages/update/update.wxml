@@ -1,7 +1,7 @@
 <view class="container">
     <view class="update-container">
         <form class="update-form">
-            <image class="update-logo" mode="aspectFit" src="/image/user.png"></image>
+            <image class="update-logo" mode="aspectFit" src="{{update.avatar}}" bindtap="uploadImage"></image>
             <view class="update-section">
                 <label for="name_id">姓名</label>
                 <input id="name_id" type="text" value="{{update.name}}" placeholder="姓名" bindinput="bindNameInput" />

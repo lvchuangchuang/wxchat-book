@@ -7,7 +7,7 @@
 
 .login-container {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 0;
     transform: translateY(-80%);
     width: 100%;
@@ -65,4 +65,45 @@
     font-size: 28rpx;
     line-height: 1;
     margin-top: -20rpx;
+}
+
+.logo{
+  padding-left: 325rpx;
+  padding-bottom: 25px;
+}
+
+.logo image{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.v3{
+  padding-left: 100rpx;
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding-top: 50rpx;
+}
+.v3 .line{
+  margin-left: 5rpx;
+  margin-top: 18rpx;
+  width: 120rpx;
+  height: 3rpx;
+ background-color:#000000;
+}
+.v3 .lText{
+  color: #000000;
+  font-size: 25rpx;
+}
+/* qq wx wb */
+.qwwIcon{
+  margin-top: 50rpx;
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+.qwwIcon image{
+  padding-left: 140rpx;
+  width: 60rpx;
+  height: 60rpx;
 }

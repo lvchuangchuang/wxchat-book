@@ -1,7 +1,8 @@
 <view class="container">
     <view class="user-container">
         <image class="arrow" mode="aspectFit" src="/image/arrow.png"></image>
-        <image class="user-logo" mode="aspectFit" src="{{user.logo ? user.logo : '/image/user.png'}}"></image>
+        <image class="user-logo" mode="aspectFit" src="{{user.avatar}}"></image>
+
         <navigator url="/pages/update/update?userid={{userID}}" hover-class="none">
             <view class="user-logo-section">
                 <text class="user-info-content user-name">{{user.name}}</text>
@@ -11,6 +12,7 @@
                 <text class="user-info-content user-phone">{{user.phone}}</text>
             </view>
         </navigator>
+
         <view class="line"></view>
         <view class="user-info-list">
             <view class="user-section">

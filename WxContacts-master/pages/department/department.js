@@ -28,14 +28,31 @@ Page(filter.loginCheck({
 					})
 				}
 			},
-			fail: function () {
-				// fail
-			},
-			complete: function () {
-				// complete
-			}
-		})
-	},
+    })
+  },
+  
+  onRefresh:function(){
+    //导航条加载动画
+    wx.showNavigationBarLoading()
+    //loading 提示框
+    wx.showLoading({
+      title: 'Loading...',
+    })
+    console.log("下拉刷新啦");
+    setTimeout(function () {
+      wx.hideLoading();
+      wx.hideNavigationBarLoading();
+      //停止下拉刷新
+      wx.stopPullDownRefresh();
+    }, 2000)
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh:function(){
+    this.onRefresh();
+  },
+
 
 	/**
 	 * 输入关键字

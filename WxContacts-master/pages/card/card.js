@@ -21,48 +21,30 @@ Page(filter.loginCheck({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-    this.setData({
-			userID: wx.getStorageSync('USERID')
-    });
-    
-		console.log('type0', options);
+
+    // console.log('options：', options);
 		let type = options.type ? parseInt(options.type) : 1,
 			keyword = type === 3 ? options.title : '';
-		console.log('type', type);
+		// console.log('type', type);
 		this.setData({
 			dataType: type,
 			dataId: options.id ? parseInt(options.id) : 0,
-			keyword: keyword
+      keyword: keyword,
+      userID: wx.getStorageSync('USERID')
 		});
-    console.log('this.data: ', this.data);
-    console.log("this.data.userID: " + this.data.userID)
+    // console.log('this.data: ', this.data);
+    // console.log("this.data.userID: " + this.data.userID)
 		wx.setNavigationBarTitle({
 			title: type === 3 ? `${keyword}的搜索结果` : options.title
 		});
-		console.log('type2', type);
+		// console.log('type2', type);
     this.fetchCardList();
-    let that = this
-    wx.request({
-      url: `${app.globalData.apiUrl}/delete/${this.data.userID}`,
-      method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-      // header: {}, // 设置请求的 header
-      data: {},
-      fail: function () {
-      // fail
-      console.log("失败")
-      },
-      complete: function () {
-      // complete
-      console.log("完成")
-      }
-      })
 	},
 
 	/**
 	 * 页面上拉触底事件的处理函数
 	 */
 	onReachBottom: function () {
-
 		if (!this.data.isNoMore) {
 			this.setData({
 				isLoading: true,
@@ -72,49 +54,28 @@ Page(filter.loginCheck({
 		}
   },
   
-  deleteUser: function () {
-    console.log(this.data.userID)
-    wx.showModal({
-      title: '是否删除',
-      icon: 'success',      
-      duration: 2000,
-      success: function (res) {
-        if (res.confirm) {
-          console.log(this.data.userID)
-          wx.request({
-            url: `${app.globalData.apiUrl}/delete/${this.data.userID}`,
-            // url: `${app.globalData.apiUrl}/updateContact/${this.data.userID}`,
-            data: {
-              name: this.data.update.name,
-              gender: this.data.update.gender,
-              phone: this.data.update.phone,
-              deptID: this.data.deptArray[this.data.deptIndex].id,
-              subjectID: this.data.subjectArray[this.data.subjectIndex].id
-            },
-            method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-            // header: {}, // 设置请求的 header
-            success: function (res) {
-              // success
-              wx.hideLoading();
-              if (res.data.success) {
-                wx.showToast({
-                  title: '成功',
-                  icon: 'success',
-                  success: function () {
-                    setTimeout(() => {
-                      wx.switchTab({
-                        url: "/pages/department/department"
-                      });
-                    }, 1500)
-                  }
-                })
-              }
-            },
-          })
-				}
-			}
+  onRefresh:function(){
+    //导航条加载动画
+    wx.showNavigationBarLoading()
+    //loading 提示框
+    wx.showLoading({
+      title: 'Loading...',
     })
+    console.log("下拉刷新啦");
+    setTimeout(function () {
+      wx.hideLoading();
+      wx.hideNavigationBarLoading();
+      //停止下拉刷新
+      wx.stopPullDownRefresh();
+    }, 2000)
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh:function(){
+    this.onRefresh();
+  },
+  
 
 	fetchCardList: function () {
 		let api = app.globalData.apiUrl,
@@ -135,8 +96,11 @@ Page(filter.loginCheck({
 			method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
 			// header: {}, // 设置请求的 header
 			success: function (res) {
+        console.log(res.data.data)
+        console.log(res.data)
 				// success
 				if (res.data.success) {
+          console.log(res.data.data)
 					let isHasNoMore = false;
 					if (res.data.data.length < that.data.pageNum) {
 						isHasNoMore = true;
@@ -179,7 +143,13 @@ Page(filter.loginCheck({
 		wx.makePhoneCall({
 			phoneNumber: e.currentTarget.dataset.phone
 		})
-	},
+  },
+  
+  addUser: function(){
+    wx.switchTab({
+      url: "/pages/add/add"
+    });
+  },
 
 	showDeptTel: function (e) {
 		let phone = e.currentTarget.dataset.tel;
@@ -195,5 +165,48 @@ Page(filter.loginCheck({
 				}
 			}
 		})
-	}
+  },
+  
+deleteUser: function (e) {
+  console.log(e.currentTarget.dataset.id)
+  let that = this;
+  that.setData({
+    userID: e.currentTarget.dataset.id
+  })
+
+  wx.showModal({
+    title: '是否删除',
+    icon: 'success',      
+    duration: 2000,
+    success: function (res) {
+      if (res.confirm) {
+        wx.request({
+          url: `${app.globalData.apiUrl}/delete/${that.data.userID}`,
+          data: {
+            userID: that.data.userID,
+          },
+          method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+          // header: {}, // 设置请求的 header
+          success: function (res) {
+            // success
+            wx.hideLoading();
+            if (res.data.success) {
+              wx.showToast({
+                title: '成功',
+                icon: 'success',
+                success: function () {
+                  setTimeout(() => {
+                    wx.switchTab({
+                      url: "/pages/department/department"
+                    });
+                  }, 1500)
+                }
+              })
+            }
+          },
+        })
+      }
+    }
+  })
+},
 }))

@@ -30,7 +30,7 @@ Page(filter.loginCheck({
 						user: res.data.data
 					})
 				}
-			},
+      },
 			fail: function () {
 				// fail
 			},

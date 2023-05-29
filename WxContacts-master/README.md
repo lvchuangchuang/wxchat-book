@@ -2,6 +2,9 @@
 
 课设做的一个展示用的demo，最开始只需要一些假数据展示看看效果。不过到最后也没用上，所以就拿出来分享一下吧。我自己把后台接口部分给简单补齐了，做了一些假数据，样式也做了一些调整。因为接口需要https以及上线需要微信审核之类的，所以目前此demo只能在本地查看。同时功能也不是很完善，很多功能做的也比较简陋。如果是初学微信小程序的话，可以参考着看看。
 
+## 功能
+具有增改查的微信小程序电话簿程序，目前为半成品，还在持续更新中
+
 ## 源码
 
 [Talk is cheap. Show me the code.](https://github.com/XNAL/WxContacts)
@@ -32,16 +35,20 @@
 
 ### 部门
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-dept.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-dept.png"/>
+
+### 添加
+
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-add.png"/>
 
 ### 联系人列表
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-card.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-card.png"/>
 
 ### 学科
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-subject.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-subject.png"/>
 
 ## 我
 
-<img src="https://github.com/XNAL/WxContacts/blob/master/screenshorts/wx-user.png"/>
+<img src="https://github.com/lvchuangchuang/wxchat-book/blob/master/screenshot/wx-user.png"/>

@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "部门"
+    "navigationBarTitleText": "部门",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "onPullDownRefresh": "onPullDownRefresh"
 }
