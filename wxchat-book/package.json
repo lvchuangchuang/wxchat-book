@@ -1,0 +1,28 @@
+{
+  "name": "wxcontacts",
+  "version": "1.0.0",
+  "description": "课程设计做的一个展示用的demo，最开始只需要一些假数据展示看看效果。不过到最后也没用上，所以就拿出来分享一下吧。我自己把后台接口部分给简单补齐了，做了一些假数据，样式也做了一些调整。因为接口需要https以及上线需要微信审核之类的，所以目前此demo只能在本地查看。同时功能也不是很完善，很多功能做的也比较简陋。如果是初学微信小程序的话，可以参考着看看。",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XNAL/WxContacts.git"
+  },
+  "author": "Don",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XNAL/WxContacts/issues"
+  },
+  "homepage": "https://github.com/XNAL/WxContacts#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.2.1",
+    "mysql": "^2.15.0",
+    "weui-miniprogram": "^1.2.7"
+  }
+}

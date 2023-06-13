@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/department/department",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/subject/subject",
+    "pages/card/card",
+    "pages/user/user",
+    "pages/update/update",
+    "pages/add/add",
+    "pages/custom-tab-bar/custom-tab-bar"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f7982a",
+    "navigationBarTitleText": "温州大学",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#2d8cf0",
+    "backgroundColor": "#f6f6f6",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/department/department",
+        "iconPath": "/image/dept.png",
+        "selectedIconPath": "/image/dept-active.png",
+        "text": "部门"
+      },
+      {
+        "pagePath": "pages/subject/subject",
+        "iconPath": "/image/subject.png",
+        "selectedIconPath": "/image/subject-active.png",
+        "text": "学科"
+      },
+      {
+        "pagePath": "pages/add/add",
+        "iconPath": "/image/add.png",
+        "selectedIconPath": "/image/add-active.png",
+        "text": "添加"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "/image/user.png",
+        "selectedIconPath": "/image/user-active.png",
+        "text": "我"
+      }
+    ]
+  }
+}

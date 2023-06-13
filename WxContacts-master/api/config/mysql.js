@@ -6,25 +6,25 @@ const pool = mysql.createPool({
     password: 'lhxjsg438',
     database: 'wx_contacts',
     connectionLimit: 10
-})
+});
 
-let query = function (sql, values) {
-    return new Promise((resolve, reject) => {
-        pool.getConnection(function (err, connection) {
+const query = function(sql, values) {
+    return new Promise(function(resolve, reject) {
+        pool.getConnection(function(err, connection) {
             if (err) {
                 return reject(err);
             } else {
-                connection.query(sql, values, (err, rows) => {
+                connection.query(sql, values, function(err, rows) {
                     connection.release();
                     if (err) {
-                        return reject(err)
+                        return reject(err);
                     } else {
                         return resolve(rows);
                     }
-                })
+                });
             }
-        })
-    })
+        });
+    });
 }
 
 module.exports = query;

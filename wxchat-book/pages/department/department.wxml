@@ -1,0 +1,34 @@
+<movable-area class="movable-area">
+    <movable-view class="movable-view" direction="all">
+      <image src="../../image/kefu.png" bindtap="callPhone"></image>
+    </movable-view>
+</movable-area>
+<view class="container">
+    <view class="dept-container">
+        <!-- <view class="section">
+            <input name="keyword" bindinput="bindKeywordInput" placeholder="请输入关键字" confirm-type="搜索" bindconfirm="search"/>            
+        </view> -->
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+            <!-- 搜索框 -->
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" name="keyword" bindinput="bindKeywordInput" placeholder="请输入搜索内容" confirm-type="搜索" bindconfirm="search" />
+                </view>
+            </view>
+            <!-- 搜索按钮,调用搜索查询方法 -->
+            <view class="weui-search-bar__cancel-btn" bindtap='search'>搜索</view>
+        </view>
+    </view>
+    <scroll-view scroll-y bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}"
+        scroll-top="{{scrollTop}}">
+        <view class="scroll-view-item" wx:key="*this" wx:for="{{deptsData}}" wx:for-item="dept">
+            <navigator url="/pages/card/card?type=1&id={{dept.id}}&title={{dept.name}}" hover-class="none">
+                <text class="dept-name">{{dept.name}}</text>
+                <text class="dept-count">{{dept.count}}</text>
+                <image class="arrow" mode="aspectFit" src="/image/arrow.png"></image>   
+            </navigator>
+        </view>
+    </scroll-view>
+</view>
+
